@@ -11,7 +11,7 @@ public class Main {
   public static void main(String args[]) throws FileNotFoundException {
 //    day1(false);
 //    day2(false);
-    day3(true);
+    day3(false);
   }
 
   public static void day1(boolean challengeA) {
@@ -58,32 +58,36 @@ public class Main {
   }
 
   public static void day3(boolean challengeA) {
-//    String[] input = getInputAsString("./src/data/day3-sample.txt");
-    String[] input = getInputAsString("./src/data/day3-input.txt");
-    String gammaBin = "";
-    String epsilonBin = "";
-    int gamma = 0;
-    int epsilon = 0;
-    int[][] gammaMatrix = new int[input[0].length()][2];
+    String[] input = getInputAsString("./src/data/day3-sample.txt");
+//    String[] input = getInputAsString("./src/data/day3-input.txt");
+    System.out.println(Arrays.toString(input));
+    int[][] inputMatrix = new int[input[0].length()][2];
 
     // count the bits and put in multi array
     for (String row : input) {
       for (int i = 0; i < row.length(); i++) {
-        gammaMatrix[i][Character.getNumericValue(row.charAt(i))]++;
+        inputMatrix[i][Character.getNumericValue(row.charAt(i))]++;
       }
     }
-    // now build the gammaBin string based on most common bits
-    for (int[] num : gammaMatrix) {
-      gammaBin += num[0] > num[1] ? "0" : "1";
-      epsilonBin += num[0] < num[1] ? "0" : "1";
+    if (challengeA) {
+      String gammaBin = "";
+      String epsilonBin = "";
+      int gamma = 0;
+      int epsilon = 0;
+      // now build the gammaBin string based on most common bits
+      for (int[] num : inputMatrix) {
+        gammaBin += num[0] > num[1] ? "0" : "1";
+        epsilonBin += num[0] < num[1] ? "0" : "1";
+      }
+
+      gamma = Integer.parseInt(gammaBin, 2);
+
+      epsilon = Integer.parseInt(epsilonBin, 2);
+
+      System.out.println(gamma * epsilon);
+    } else {
+
     }
-
-    gamma = Integer.parseInt(gammaBin, 2);
-
-    epsilon = Integer.parseInt(epsilonBin, 2);
-
-    System.out.println(Arrays.toString(input));
-    System.out.println(gamma * epsilon);
   }
 
   public static void dayX(boolean challengeA) {
