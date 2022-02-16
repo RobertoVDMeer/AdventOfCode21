@@ -9,7 +9,8 @@ import java.util.Scanner;
 public class Main {
   public static void main(String args[]) throws FileNotFoundException {
 //    day1(false);
-    day2(false);
+//    day2(false);
+    day3(true);
   }
 
   public static void day1(boolean challengeA) {
@@ -53,6 +54,14 @@ public class Main {
     System.out.println(Arrays.toString(commands));
 
     System.out.println(pos * depth);
+  }
+
+  public static void day3(boolean challengeA) {
+//    int[] input = getInputAsInt("./src/data/day3-sample.txt");
+//    int[] input = getInputAsInt("./src/data/day3-input.txt");
+    String[] input = getInputAsString("./src/data/day3-sample.txt");
+//    String[] input = getInputAsString("./src/data/day3-input.txt");
+    System.out.println(Arrays.toString(input));
   }
 
   public static void dayX(boolean challengeA) {
