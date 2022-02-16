@@ -9,7 +9,7 @@ import java.util.Scanner;
 public class Main {
   public static void main(String args[]) throws FileNotFoundException {
 //    day1(false);
-    day2(true);
+    day2(false);
   }
 
   public static void day1(boolean challengeA) {
@@ -25,25 +25,37 @@ public class Main {
     System.out.println(count);
   }
 
-  public static void day2 (boolean challengeA) {
+  public static void day2(boolean challengeA) {
 //    String[] commands = getInputAsString("./src/data/day2-sample.txt");
     String[] commands = getInputAsString("./src/data/day2-input.txt");
     int pos = 0;
     int depth = 0;
+    int aim = 0;
 
     for (int i = 0; i <= commands.length - 2; i += 2) {
-      System.out.println(commands[i]);
-      if (commands[i].equals("forward")) pos += Integer.parseInt(commands[i +1]);
-      if (commands[i].equals("down")) depth += Integer.parseInt(commands[i +1]);
-      if (commands[i].equals("up")) depth -= Integer.parseInt(commands[i +1]);
-      if (depth < 0) depth = 0;
+      if (challengeA) {
+        if (commands[i].equals("forward")) pos += Integer.parseInt(commands[i + 1]);
+        if (commands[i].equals("down")) depth += Integer.parseInt(commands[i + 1]);
+        if (commands[i].equals("up")) depth -= Integer.parseInt(commands[i + 1]);
+        if (depth < 0) depth = 0;
+      } else {
+        if (commands[i].equals("forward")) {
+          int change = Integer.parseInt(commands[i + 1]);
+          pos += change;
+          if (aim != 0) depth += aim * change;
+        }
+        if (commands[i].equals("down")) aim += Integer.parseInt(commands[i + 1]);
+        if (commands[i].equals("up")) aim -= Integer.parseInt(commands[i + 1]);
+        if (depth < 0) depth = 0;
+      }
     }
+
     System.out.println(Arrays.toString(commands));
 
     System.out.println(pos * depth);
   }
 
-  public static void dayX (boolean challengeA) {
+  public static void dayX(boolean challengeA) {
 //    int[] input = getInputAsInt("./src/data/dayx-sample.txt");
 //    int[] input = getInputAsInt("./src/data/dayx-input.txt");
 //    String[] input = getInputAsString("./src/data/dayx-sample.txt");
