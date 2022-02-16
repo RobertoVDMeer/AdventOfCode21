@@ -7,7 +7,7 @@ import java.util.Scanner;
 
 public class Main {
   public static void main(String args[]) throws FileNotFoundException {
-    day1(false);
+//    day1(false);
   }
 
   public static void day1(boolean challengeA) {
@@ -21,6 +21,14 @@ public class Main {
     }
     System.out.println(Arrays.toString(readings));
     System.out.println(count);
+  }
+
+  public static void dayX (boolean challengeA) {
+//    int[] readings = getInputAsInt("./src/data/dayx-sample.txt");
+//    int[] readings = getInputAsInt("./src/data/dayx-input.txt");
+//    String[] readings = getInputAsString("./src/data/dayx-sample.txt");
+//    String[] readings = getInputAsString("./src/data/dayx-input.txt");
+//    System.out.println(Arrays.toString(readings));
   }
 
   private static int[] getInputAsInt(String filePath) {
