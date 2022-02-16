@@ -1,3 +1,4 @@
+import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -8,6 +9,7 @@ import java.util.Scanner;
 public class Main {
   public static void main(String args[]) throws FileNotFoundException {
 //    day1(false);
+    day2(true);
   }
 
   public static void day1(boolean challengeA) {
@@ -21,6 +23,12 @@ public class Main {
     }
     System.out.println(Arrays.toString(readings));
     System.out.println(count);
+  }
+
+  public static void day2 (boolean challengeA) {
+    String[] readings = getInputAsString("./src/data/day2-sample.txt");
+//    String[] readings = getInputAsString("./src/data/day2-input.txt");
+    System.out.println(Arrays.toString(readings));
   }
 
   public static void dayX (boolean challengeA) {
