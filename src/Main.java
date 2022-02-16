@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Arrays;
+import java.util.BitSet;
 import java.util.Scanner;
 
 
@@ -57,11 +58,32 @@ public class Main {
   }
 
   public static void day3(boolean challengeA) {
-//    int[] input = getInputAsInt("./src/data/day3-sample.txt");
-//    int[] input = getInputAsInt("./src/data/day3-input.txt");
-    String[] input = getInputAsString("./src/data/day3-sample.txt");
-//    String[] input = getInputAsString("./src/data/day3-input.txt");
+//    String[] input = getInputAsString("./src/data/day3-sample.txt");
+    String[] input = getInputAsString("./src/data/day3-input.txt");
+    String gammaBin = "";
+    String epsilonBin = "";
+    int gamma = 0;
+    int epsilon = 0;
+    int[][] gammaMatrix = new int[input[0].length()][2];
+
+    // count the bits and put in multi array
+    for (String row : input) {
+      for (int i = 0; i < row.length(); i++) {
+        gammaMatrix[i][Character.getNumericValue(row.charAt(i))]++;
+      }
+    }
+    // now build the gammaBin string based on most common bits
+    for (int[] num : gammaMatrix) {
+      gammaBin += num[0] > num[1] ? "0" : "1";
+      epsilonBin += num[0] < num[1] ? "0" : "1";
+    }
+
+    gamma = Integer.parseInt(gammaBin, 2);
+
+    epsilon = Integer.parseInt(epsilonBin, 2);
+
     System.out.println(Arrays.toString(input));
+    System.out.println(gamma * epsilon);
   }
 
   public static void dayX(boolean challengeA) {
