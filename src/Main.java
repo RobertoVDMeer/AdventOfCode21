@@ -10,8 +10,14 @@ public class Main {
   }
 
   public static void day1() {
-    int[] readings = getInputAsInt("./src/data/day1-sample.txt");
+//    int[] readings = getInputAsInt("./src/data/day1-sample.txt");
+    int[] readings = getInputAsInt("./src/data/day1-input.txt");
+    int count = 0;
+    for (int i = 1; i < readings.length; i++) {
+      count += readings[i] > readings[i -1] ? 1 : 0 ;
+    }
     System.out.println(Arrays.toString(readings));
+    System.out.println(count);
   }
 
   private static int[] getInputAsInt(String filePath) {
