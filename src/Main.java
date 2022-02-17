@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.util.Arrays;
 import java.util.BitSet;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 
 public class Main {
@@ -98,12 +99,12 @@ public class Main {
 
       // fill initial arrayLists
       for (String row : input) {
-       String firstBit = row.substring(0,1);
-       if(firstBit.equals("0")) {
-         tempZeros.add(row);
-       } else {
-         tempOnes.add(row);
-       }
+        String firstBit = row.substring(0, 1);
+        if (firstBit.equals("0")) {
+          tempZeros.add(row);
+        } else {
+          tempOnes.add(row);
+        }
       }
 
       if (tempZeros.size() > tempOnes.size()) {
@@ -125,7 +126,7 @@ public class Main {
             else tempOnes.add(reading);
           }
           oxygenReadings.clear();
-          if(tempOnes.size() >= tempZeros.size()) oxygenReadings.addAll(tempOnes);
+          if (tempOnes.size() >= tempZeros.size()) oxygenReadings.addAll(tempOnes);
           else oxygenReadings.addAll(tempZeros);
           tempOnes.clear();
           tempZeros.clear();
@@ -136,7 +137,7 @@ public class Main {
             else tempOnes.add(reading);
           }
           co2Readings.clear();
-          if(tempOnes.size() < tempZeros.size()) co2Readings.addAll(tempOnes);
+          if (tempOnes.size() < tempZeros.size()) co2Readings.addAll(tempOnes);
           else co2Readings.addAll(tempZeros);
           tempOnes.clear();
           tempZeros.clear();
@@ -158,11 +159,31 @@ public class Main {
   }
 
   public static void day4(boolean challengeA) {
-//    int[] input = getInputAsInt("./src/data/day4-sample.txt");
-//    int[] input = getInputAsInt("./src/data/day4-input.txt");
     String[] input = getInputAsString("./src/data/day4-sample.txt");
 //    String[] input = getInputAsString("./src/data/day4-input.txt");
-    System.out.println(Arrays.toString(input));
+
+    // just taking precautionary measures here, I'm sure that squid
+    // will be able to either hold more cards, or bigger cards next round,
+    // 8 legged bastard :p (yes I know that's an octopus, but they don't play
+    // bingo either now do they, wise-ass?)
+    final int CARDS = 3;
+    final int GRID = 5;
+    int[] draws = Arrays.stream(input[0].split(","))
+        .mapToInt(Integer::parseInt)
+        .toArray();
+    int[][][] cards = new int[CARDS][GRID][GRID];
+    int fillPointer = 1;
+    for (int card = 0; card < CARDS; card++) {
+      for (int row = 0; row < GRID; row++) {
+        for (int col = 0; col < GRID; col++) {
+          cards[card][row][col] = Integer.parseInt(input[fillPointer]);
+          fillPointer++;
+        }
+      }
+    }
+
+    System.out.println(Arrays.toString(draws));
+    System.out.println(Arrays.toString(cards[2][4]));
   }
 
   public static void dayX(boolean challengeA) {
