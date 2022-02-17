@@ -11,7 +11,8 @@ public class Main {
   public static void main(String args[]) throws FileNotFoundException {
 //    day1(false);
 //    day2(false);
-    day3(false);
+//    day3(false);
+    day4(true);
   }
 
   public static void day1(boolean challengeA) {
@@ -154,6 +155,14 @@ public class Main {
       System.out.println(oxygen * co2);
 
     }
+  }
+
+  public static void day4(boolean challengeA) {
+//    int[] input = getInputAsInt("./src/data/day4-sample.txt");
+//    int[] input = getInputAsInt("./src/data/day4-input.txt");
+    String[] input = getInputAsString("./src/data/day4-sample.txt");
+//    String[] input = getInputAsString("./src/data/day4-input.txt");
+    System.out.println(Arrays.toString(input));
   }
 
   public static void dayX(boolean challengeA) {
