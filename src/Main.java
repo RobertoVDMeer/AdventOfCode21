@@ -159,16 +159,16 @@ public class Main {
   }
 
   public static void day4(boolean challengeA) {
-    String[] input = getInputAsString("./src/data/day4-sample.txt");
-//    String[] input = getInputAsString("./src/data/day4-input.txt");
+//    String[] input = getInputAsString("./src/data/day4-sample.txt");
+    String[] input = getInputAsString("./src/data/day4-input.txt");
 
     // just taking precautionary measures here, I'm sure that squid
     // will be able to either hold more cards, or bigger cards next round,
     // 8 legged bastard :p (yes I know that's an octopus, but they don't play
     // bingo either now do they, wise-ass?)
-    final int CARDS = 3;
     // make the cards 1 bigger to keep an index on pos 0 row / col
     final int GRID_SIZE = 6;
+    final int CARDS = (input.length -1) / (int) Math.pow((GRID_SIZE -1),2);
     int winningCard = 0;
     int winningNum = 0;
     int sum = 0;
@@ -199,7 +199,6 @@ public class Main {
               cards[card][row][col] = -1;
               cards[card][row][0]++;
               cards[card][0][col]++;
-              System.out.println("found " + draws[i]);
               if (cards[card][row][0] == 5 || cards[card][0][col] == 5) {
                 winningCard = card;
                 winningNum = draws[i];
