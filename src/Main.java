@@ -1,10 +1,7 @@
 import javax.swing.plaf.synth.SynthTextAreaUI;
-import java.util.ArrayList;
+import java.util.*;
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.Arrays;
-import java.util.BitSet;
-import java.util.Scanner;
 import java.util.stream.Collectors;
 
 
@@ -13,7 +10,7 @@ public class Main {
 //    day1(false);
 //    day2(false);
 //    day3(false);
-    day4(true);
+    day4(false);
   }
 
   public static void day1(boolean challengeA) {
@@ -168,10 +165,13 @@ public class Main {
     // bingo either now do they, wise-ass?)
     // make the cards 1 bigger to keep an index on pos 0 row / col
     final int GRID_SIZE = 6;
-    final int CARDS = (input.length -1) / (int) Math.pow((GRID_SIZE -1),2);
+    final int CARDS = (input.length - 1) / (int) Math.pow((GRID_SIZE - 1), 2);
     int winningCard = 0;
     int winningNum = 0;
     int sum = 0;
+
+    // for challenge B
+    HashMap<Integer,Integer> cardScores = new HashMap();
 
     int[][][] cards = new int[CARDS][GRID_SIZE][GRID_SIZE];
     int[] draws = Arrays.stream(input[0].split(","))
@@ -200,10 +200,23 @@ public class Main {
               cards[card][row][0]++;
               cards[card][0][col]++;
               if (cards[card][row][0] == 5 || cards[card][0][col] == 5) {
-                winningCard = card;
-                winningNum = draws[i];
-                System.out.println("Card " + (card + 1) + " won with number " + draws[i]);
-                break out_game;
+                if (challengeA) {
+                  System.out.println("Card " + (card + 1) + " bingo with number " + draws[i]);
+                  winningNum = draws[i];
+                  winningCard = card;
+                  break out_game;
+                } else {
+                  if (!cardScores.containsKey(card)){
+                    System.out.println("Card " + (card + 1) + " bingo with number " + draws[i]);
+                    winningNum = draws[i];
+                    winningCard = card;
+                    sum = 0;
+                    for (int r = 1; r < GRID_SIZE; r++) {
+                      sum += Arrays.stream(cards[winningCard][r]).sum();
+                    }
+                    cardScores.put(card, sum);
+                  }
+                }
               }
             }
           }
@@ -214,9 +227,13 @@ public class Main {
     // get the sum of all elements, skip the first row as it only indexed the hits
     // in cols, but the first cols does the same for rows
     for (int row = 1; row < GRID_SIZE; row++) {
-       sum += Arrays.stream(cards[winningCard][row]).sum();
+      sum += Arrays.stream(cards[winningCard][row]).sum();
     }
-    System.out.println(winningNum * sum);
+    if(challengeA) {
+      System.out.println(winningNum * sum);
+    } else {
+      System.out.println(winningNum * cardScores.get(winningCard));
+    }
   }
 
   public static void dayX(boolean challengeA) {
