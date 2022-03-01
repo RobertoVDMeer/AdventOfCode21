@@ -2,8 +2,8 @@ import java.awt.*;
 import java.util.*;
 
 public class Day5 extends Base {
-  static String[] input = getInputAsString("./src/data/day5-sample.txt");
-//    static String[] input = getInputAsString("./src/data/day5-input.txt");
+//  static String[] input = getInputAsString("./src/data/day5-sample.txt");
+    static String[] input = getInputAsString("./src/data/day5-input.txt");
 
   static ArrayList<Point[]> inputAsPoints = new ArrayList<>();
   static Map<String, Integer> pointMap = new HashMap<>();
