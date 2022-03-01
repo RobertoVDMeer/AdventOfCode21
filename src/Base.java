@@ -11,13 +11,19 @@ public class Base {
 //    Day2.solve(CHALLENGE.B);
 //    Day3.solve(CHALLENGE.B);
 //    Day4.solve(CHALLENGE.B);
-    Day6.solve(CHALLENGE.B);
+      Day7.solve(CHALLENGE.A);
 //    Day10.solve(CHALLENGE.B);
 //    Day11.solve(CHALLENGE.B);
   }
 
   public static int[] getInputAsInt(String filePath) {
     String[] input = getInputAsString(filePath);
+    return convertInputToInt(input);
+  }
+
+  public static int[] getInputAsCSVInt(String filePath) {
+    String[] input = getInputAsString(filePath)[0].split(",");
+
     return convertInputToInt(input);
   }
 
