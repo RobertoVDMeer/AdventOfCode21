@@ -18,7 +18,7 @@ public class Day11 extends Base {
     setNextPositionMap();
 
     if(challenge == CHALLENGE.A) {
-      int steps = 100;
+      int steps = 1;
       for (int i = 0; i < steps; i++) {
         raiseEnergy();
         checkFlashes();
@@ -26,7 +26,15 @@ public class Day11 extends Base {
       System.out.println(MessageFormat.format("Flashes after {0} steps: {1}"
           , steps, flashes));
     } else {
-      System.out.println("chal B");
+      int steps = 0;
+
+      while (flashes != matrix.length * matrix[0].length){
+        steps++;
+        flashes = 0;
+        raiseEnergy();
+        checkFlashes();
+      }
+      System.out.println("All flashed at step " + steps);
     }
     printMatrix();
   }
@@ -44,7 +52,7 @@ public class Day11 extends Base {
       for (int c = 0; c < matrix[r].length; c++) {
         if (matrix[r][c] > 9) {
           flashes++;
-          matrix[r][c] =0;
+          matrix[r][c] = 0;
           flashSplash(r, c, positionGrid.C);
         }
       }
