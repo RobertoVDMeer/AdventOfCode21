@@ -2,8 +2,8 @@ import java.text.MessageFormat;
 import java.util.*;
 
 public class Day11 extends Base {
-//      static String[] input = getInputAsString("./src/data/day11-sample.txt");
-  static String[] input = getInputAsString("./src/data/day11-input.txt");
+      static String[] input = getInputAsString("./src/data/day11-sample.txt");
+//  static String[] input = getInputAsString("./src/data/day11-input.txt");
 
   enum positionGrid {NW, N, NE, W, C, E, SW, S, SE}
 
@@ -14,18 +14,21 @@ public class Day11 extends Base {
   public static void solve(CHALLENGE challenge) {
     flashes = 0;
     System.out.println(Arrays.toString(input));
-    int steps = 100;
     setMatrix();
     setNextPositionMap();
 
-    for (int i = 0; i < steps; i++) {
-      raiseEnergy();
-      checkFlashes();
+    if(challenge == CHALLENGE.A) {
+      int steps = 100;
+      for (int i = 0; i < steps; i++) {
+        raiseEnergy();
+        checkFlashes();
+      }
+      System.out.println(MessageFormat.format("Flashes after {0} steps: {1}"
+          , steps, flashes));
+    } else {
+      System.out.println("chal B");
     }
     printMatrix();
-
-    System.out.println(MessageFormat.format("Flashes after {0} steps: {1}"
-        , steps, flashes));
   }
 
   private static void raiseEnergy() {

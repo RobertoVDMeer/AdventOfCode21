@@ -12,7 +12,7 @@ public class Base {
 //    Day3.solve(CHALLENGE.B);
 //    Day4.solve(CHALLENGE.B);
 //    Day10.solve(CHALLENGE.B);
-    Day11.solve(CHALLENGE.A);
+    Day11.solve(CHALLENGE.B);
   }
 
   public static int[] getInputAsInt(String filePath) {
