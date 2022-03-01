@@ -3,7 +3,7 @@ import java.util.*;
 
 public class Day5 extends Base {
   static String[] input = getInputAsString("./src/data/day5-sample.txt");
-  //  static String[] input = getInputAsString("./src/data/day5-input.txt");
+//    static String[] input = getInputAsString("./src/data/day5-input.txt");
 
   static ArrayList<Point[]> inputAsPoints = new ArrayList<>();
   static Map<String, Integer> pointMap = new HashMap<>();
@@ -11,16 +11,19 @@ public class Day5 extends Base {
 
   public static void solve(CHALLENGE challenge) {
     parseInputAsPoints();
-    drawStraightLines();
+    drawLines(challenge);
     System.out.println(totalOverlaps);
   }
 
-  private static void drawStraightLines() {
+
+  private static void drawLines(CHALLENGE challenge) {
     Iterator<Point[]> pIter = inputAsPoints.iterator();
     while (pIter.hasNext()) {
       Point[] p = pIter.next();
 
-      if (p[0].x != p[1].x && p[0].y != p[1].y) continue;
+      if (challenge == CHALLENGE.A
+          && p[0].x != p[1].x
+          && p[0].y != p[1].y) continue;
 
       boolean lastOne;
       do {
