@@ -8,38 +8,32 @@ public class Day7 extends Base {
   public static void solve(CHALLENGE challenge) {
     Arrays.sort(input);
     System.out.println(Arrays.toString(input));
-    int lowestTotal = 0;
+    int lowestTotal = Integer.MAX_VALUE;
     int lowestPos = 0;
-    boolean pointerWentLeft = true;
-    int pointer = input.length / 2;
+    boolean goingLeft = true;
+    int currPos = input[input.length /2];
 
     while(true) {
      int currTotal = 0;
      for(int i = 0; i < input.length; i++){
        if(challenge == CHALLENGE.A) {
-         currTotal += Math.abs(input[pointer] - input[i]);
+         currTotal += Math.abs(currPos - input[i]);
        } else {
-         currTotal += calculateExponentCost(Math.abs(input[pointer]), Math.abs(input[i]));
+         currTotal += calculateExponentCost(Math.abs(currPos), Math.abs(input[i]));
        }
      }
       System.out.println(currTotal);
-     if (lowestTotal == 0) {
+
+     if(currTotal <= lowestTotal) {
        lowestTotal = currTotal;
-       lowestPos = input[pointer];
-       while(input[pointer] == input[--pointer]);
-     } else if(currTotal < lowestTotal) {
-       lowestTotal = currTotal;
-       if (pointerWentLeft) {
-         while(input[pointer] == input[--pointer]);
-       } else {
-         while(input[pointer] == input[++pointer]);
-       }
+       lowestPos = currPos;
+
+       if (goingLeft) currPos--;
+       else currPos++;
      } else {
-       while(input[pointer] == input[++pointer]);
-       if(!pointerWentLeft) break;
-       // skip over the last lowest before going left
-       while(input[pointer] == input[++pointer]);
-       pointerWentLeft = false;
+       if(!goingLeft) break;
+       goingLeft = false;
+       currPos++;
      }
     }
     System.out.println(MessageFormat.format("pos {0} cost least for {1} fuel"
