@@ -37,6 +37,8 @@ public class Day7 extends Base {
      } else {
        while(input[pointer] == input[++pointer]);
        if(!pointerWentLeft) break;
+       // skip over the last lowest before going left
+       while(input[pointer] == input[++pointer]);
        pointerWentLeft = false;
      }
     }
